@@ -27,8 +27,6 @@ public class WatchFaceView {
     private final Time time;
 
     private boolean shouldShowSeconds = true;
-    private int backgroundColour = BACKGROUND_DEFAULT_COLOUR;
-    private int dateAndTimeColour = DATE_AND_TIME_DEFAULT_COLOUR;
 
     private String batteryText = "100%";
 
@@ -113,11 +111,6 @@ public class WatchFaceView {
         return textBounds.height() + 10.0f;
     }
 
-    public void setAntiAlias(boolean antiAlias) {
-        timePaint.setAntiAlias(antiAlias);
-        datePaint.setAntiAlias(antiAlias);
-    }
-
     public void updateTimeZoneWith(String timeZone) {
         time.clear(timeZone);
         time.setToNow();
@@ -127,25 +120,7 @@ public class WatchFaceView {
         this.batteryText = batteryText;
     }
 
-    public void setShowSeconds(boolean showSeconds) {
-        shouldShowSeconds = showSeconds;
-    }
-
-    public void restoreBackgroundColour() {
-        backgroundPaint.setColor(backgroundColour);
-    }
-
     public void updateBackgroundColourToDefault() {
         backgroundPaint.setColor(BACKGROUND_DEFAULT_COLOUR);
-    }
-
-    public void updateDateAndTimeColourToDefault() {
-        timePaint.setColor(DATE_AND_TIME_DEFAULT_COLOUR);
-        datePaint.setColor(DATE_AND_TIME_DEFAULT_COLOUR);
-    }
-
-    public void restoreDateAndTimeColour() {
-        timePaint.setColor(dateAndTimeColour);
-        datePaint.setColor(dateAndTimeColour);
     }
 }

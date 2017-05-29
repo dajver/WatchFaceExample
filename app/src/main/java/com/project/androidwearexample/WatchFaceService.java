@@ -179,20 +179,6 @@ public class WatchFaceService extends CanvasWatchFaceService {
         @Override
         public void onAmbientModeChanged(boolean inAmbientMode) {
             super.onAmbientModeChanged(inAmbientMode);
-            watchFace.setAntiAlias(!inAmbientMode);
-            watchFace.setShowSeconds(!isInAmbientMode());
-
-            if (inAmbientMode) {
-                watchFace.updateBackgroundColourToDefault();
-                watchFace.updateDateAndTimeColourToDefault();
-            } else {
-                watchFace.restoreBackgroundColour();
-                watchFace.restoreDateAndTimeColour();
-            }
-
-            invalidate();
-
-            startTimerIfNecessary();
         }
 
         @Override
