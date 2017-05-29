@@ -118,12 +118,6 @@ public class WatchFaceView {
         datePaint.setAntiAlias(antiAlias);
     }
 
-    public void updateDateAndTimeColourTo(int colour) {
-        dateAndTimeColour = colour;
-        timePaint.setColor(colour);
-        datePaint.setColor(colour);
-    }
-
     public void updateTimeZoneWith(String timeZone) {
         time.clear(timeZone);
         time.setToNow();
@@ -135,11 +129,6 @@ public class WatchFaceView {
 
     public void setShowSeconds(boolean showSeconds) {
         shouldShowSeconds = showSeconds;
-    }
-
-    public void updateBackgroundColourTo(int colour) {
-        backgroundColour = colour;
-        backgroundPaint.setColor(colour);
     }
 
     public void restoreBackgroundColour() {
