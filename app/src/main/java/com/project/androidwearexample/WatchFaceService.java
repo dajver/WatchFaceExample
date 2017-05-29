@@ -35,9 +35,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.DataApi;
-import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
-import com.google.android.gms.wearable.DataItem;
 import com.google.android.gms.wearable.DataItemBuffer;
 import com.google.android.gms.wearable.Wearable;
 
@@ -208,40 +206,14 @@ public class WatchFaceService extends CanvasWatchFaceService {
         private final DataApi.DataListener onDataChangedListener = new DataApi.DataListener() {
             @Override
             public void onDataChanged(DataEventBuffer dataEvents) {
-                for (DataEvent event : dataEvents) {
-                    if (event.getType() == DataEvent.TYPE_CHANGED) {
-                        DataItem item = event.getDataItem();
-                        processConfigurationFor(item);
-                    }
-                }
-
                 dataEvents.release();
                 invalidateIfNecessary();
             }
         };
 
-        private void processConfigurationFor(DataItem item) {
-//            if (WatchfaceSyncCommons.PATH.equals(item.getUri().getPath())) {
-//                DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
-//                if (dataMap.containsKey(WatchfaceSyncCommons.KEY_BACKGROUND_COLOUR)) {
-//                    String backgroundColour = dataMap.getString(WatchfaceSyncCommons.KEY_BACKGROUND_COLOUR);
-//                    watchFace.updateBackgroundColourTo(Color.parseColor(backgroundColour));
-//                }
-//
-//                if (dataMap.containsKey(WatchfaceSyncCommons.KEY_DATE_TIME_COLOUR)) {
-//                    String timeColour = dataMap.getString(WatchfaceSyncCommons.KEY_DATE_TIME_COLOUR);
-//                    watchFace.updateDateAndTimeColourTo(Color.parseColor(timeColour));
-//                }
-//            }
-        }
-
         private final ResultCallback<DataItemBuffer> onConnectedResultCallback = new ResultCallback<DataItemBuffer>() {
             @Override
             public void onResult(DataItemBuffer dataItems) {
-                for (DataItem item : dataItems) {
-                    processConfigurationFor(item);
-                }
-
                 dataItems.release();
                 invalidateIfNecessary();
             }
