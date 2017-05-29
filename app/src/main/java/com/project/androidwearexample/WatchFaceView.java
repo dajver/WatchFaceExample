@@ -2,7 +2,6 @@ package com.project.androidwearexample;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.format.Time;
@@ -16,8 +15,6 @@ public class WatchFaceView {
     private static final String TIME_FORMAT_WITHOUT_SECONDS = "%02d:%02d";
     private static final String TIME_FORMAT_WITH_SECONDS = TIME_FORMAT_WITHOUT_SECONDS + ":%02d";
     private static final String DATE_FORMAT = "%02d.%02d.%d";
-    private static final int DATE_AND_TIME_DEFAULT_COLOUR = Color.BLUE;
-    private static final int BACKGROUND_DEFAULT_COLOUR = Color.BLACK;
 
     private final Paint timePaint;
     private final Paint datePaint;
@@ -53,9 +50,9 @@ public class WatchFaceView {
         batteryPaint.setAntiAlias(true);
 
         Paint secondStickPaint = new Paint();
-        batteryPaint.setColor(context.getResources().getColor(R.color.primaryColorBlue));
-        batteryPaint.setStrokeWidth(3);
-        batteryPaint.setAntiAlias(true);
+        secondStickPaint.setColor(context.getResources().getColor(R.color.primaryColorBlue));
+        secondStickPaint.setStrokeWidth(3);
+        secondStickPaint.setAntiAlias(true);
 
         return new WatchFaceView(timePaint, datePaint, batteryPaint, secondStickPaint, backgroundPaint, new Time());
     }
@@ -96,7 +93,7 @@ public class WatchFaceView {
         float mSecondHandLength = mCenterX;
         float secondsRotation = time.second * 6f;
         canvas.rotate(secondsRotation, mCenterX, mCenterY);
-        canvas.drawLine(mCenterX, mCenterY - 120, mCenterX, mCenterY - mSecondHandLength, batteryPaint);
+        canvas.drawLine(mCenterX, mCenterY - 120, mCenterX, mCenterY - mSecondHandLength, secondStickPaint);
     }
 
     private float computeXOffset(String text, Paint paint, Rect watchBounds) {
@@ -118,9 +115,5 @@ public class WatchFaceView {
 
     public void updateBattery(String batteryText) {
         this.batteryText = batteryText;
-    }
-
-    public void updateBackgroundColourToDefault() {
-        backgroundPaint.setColor(BACKGROUND_DEFAULT_COLOUR);
     }
 }
